@@ -299,20 +299,22 @@
     }
 }
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    [cell prepareForReuse];
+//    [cell prepareForReuse];
     
     KNPhotoItems *item = self.itemsArr[indexPath.row];
-    UIImageView *tempView = [self tempViewFromSourceViewWithCurrentIndex:indexPath.row];
+//    UIImageView *tempView = [self tempViewFromSourceViewWithCurrentIndex:indexPath.row];
     if (item.isVideo) {
         KNPhotoVideoCell *cell1 = (KNPhotoVideoCell *)cell;
-        [cell1 playerWithURL:item.url placeHolder:tempView.image];
+//        [cell1 playerWithURL:item.url placeHolder:tempView.image];
+        [cell1 playerWithURL:item.url placeHolder:item.sourceImage];
         if (_isNeedAutoPlay == true) {
             [cell1 setIsNeedAutoPlay:true];
         }
         [cell1 setPresentedMode:self.presentedMode];
     } else {
         KNPhotoBaseCell *cell1 = (KNPhotoBaseCell *)cell;
-        [cell1 sd_ImageWithUrl:item.url placeHolder:tempView.image photoItem:item];
+//        [cell1 sd_ImageWithUrl:item.url placeHolder:tempView.image photoItem:item];
+        [cell1 sd_ImageWithUrl:item.url placeHolder:item.sourceImage photoItem:item];
         [cell1 setPresentedMode:self.presentedMode];
     }
 }
